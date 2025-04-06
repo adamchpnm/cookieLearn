@@ -130,3 +130,88 @@ button:hover {
     top: 10px; 
     right: 15px;
 }
+
+
+#golden-cookie {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, gold, orange);
+    border-radius: 50%;
+    position: fixed;
+    display: none;
+    z-index: 999;
+    cursor: pointer;
+    animation: popInOut 5s ease-in-out forwards;
+}
+
+/* Animation: grow then shrink */
+@keyframes popInOut {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.golden-chip {
+    width: 10px;
+    height: 10px;
+    background-color: #966e09;
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* Chip positions */
+.g-chip1 {
+    top: 10px;
+    left: 20px;
+}
+
+.g-chip1 {
+    top: 12px;
+    left: 24px;
+}
+
+.g-chip2 {
+    top: 28px;
+    right: 20px;
+}
+
+.g-chip3 {
+    bottom: 16px;
+    left: 32px;
+}
+
+.g-chip4 {
+    top: 40px;
+    left: 44px;
+}
+
+.g-chip5 {
+    bottom: 12px;
+    right: 24px;
+}
+
+.g-chip6 {
+    top: 16px;
+    right: 32px;
+}
+
+.g-chip7 {
+    bottom: 32px;
+    left: 16px;
+}
