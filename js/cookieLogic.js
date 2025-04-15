@@ -1,3 +1,5 @@
+
+
 let score = 0;
 let clickPower = 1;
 let clickedLastSecond = 0;
@@ -6,7 +8,8 @@ let clickedLastSecond = 0;
 let cookie = document.getElementById('cookie');
 let scoreDisplay = document.getElementById('score');
 
-// Increment score on cookie click
+// Event listener for cookie click
+// Increment score on click
 cookie.addEventListener('click', () => {
     score += clickPower;
     clickedLastSecond += clickPower;
@@ -21,7 +24,7 @@ let refreshCookieCount = function() {
 // Function to update the cookies per second display
 function updateCPS(clickedPerSecond) {
     let cpsDisplay = document.getElementById('cps');
-    cpsDisplay.textContent = autoClickerPower + clickedPerSecond;
+    cpsDisplay.textContent = autoClickerPowers.reduce((a, b) => a + b, 0) + clickedPerSecond;
 }
 
 // Update the cookies per second display every second
@@ -30,78 +33,7 @@ setInterval(() => {
     clickedLastSecond = 0; // Reset clicked last second
 }, 1000);
 
-let goldenCookie = document.getElementById('golden-cookie');
-// let goldenChipList = [document.getElementById('g-chip1'), document.getElementById('g-chip2'), document.getElementById('g-chip3'), document.getElementById('g-chip4'), document.getElementById('g-chip5'), document.getElementById('g-chip6'), document.getElementById('g-chip7')];    
-letGoldenIn = false;
-
-function spawnGoldenCookie() {
-    const cookieVal = Math.ceil(Math.sqrt(Math.random() * 10000) + 1); // Random number between 1 and 100
-
-    const delay = Math.random() * 20000 + 20000; // 20s to 40s
-    setTimeout(() => {
-        
-        console.log("Golden cookie spawned! with val", cookieVal);
-
-        
-        // var stepSize = 2 * Math.PI / goldenChipList.length;
-        // var angle = 0;
-
-
-        // for (let i in goldenChipList) {
-        //     var angle = angle + stepSize;
-        //     var r = (Math.random())*40;
-        //     const gx = Math.cos(angle)*r + 40;
-        //     const gy = Math.sin(angle)*r + 40;
-        //     goldenChipList[i].style.left = `${gx}px`;
-        //     goldenChipList[i].style.top = `${gy}px`;
-        // }
-
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
-
-        goldenCookie.style.left = `${x}px`;
-        goldenCookie.style.top = `${y}px`;
-        goldenCookie.style.display = 'block';
-        goldenCookie.style.animation = 'none'; // restart animation
-        goldenCookie.dataset.value = cookieVal;
-        void goldenCookie.offsetWidth; // force reflow
-
-        const duration = (20000-((cookieVal + 30)**2))/2;
-        console.log("Golden cookie duration", duration);
-
-        goldenCookie.style.animation = `popInOut ${duration}ms ease-in-out forwards`;
-
-        // Auto-remove after animation (5s)
-        setTimeout(() => {
-            goldenCookie.style.display = 'none';
-            spawnGoldenCookie(); // Schedule next one
-        }, duration + 1000);
-    }, delay);
-}
-
-goldenCookie.addEventListener('click', () => {
-    let goldVal = parseInt(goldenCookie.dataset.value);
-    score += goldVal;
-    console.log("score",score)
-    refreshCookieCount();
-    
-    goldenCookie.style.display = 'none'; // Hide on click
-    spawnGoldenCookie(); // Schedule next one
-});
-
-spawnGoldenCookie(); // Start the loop
-
-
-// let resetButton = document.getElementById('reset-button');
-
-// Reset the score
-// resetButton.addEventListener('click', () => {
-//     score = 0;
-//     refreshCookieCount();
-// });
-
 // ---==== Shop ====---
-
 // Function to create an upgrade button
 function createUpgrade({ buttonId, priceElementId, levelElementId, multipleElementId, priceAmount, scalingAmount, levelNumber, power, onUpgrade }) {
     let button = document.getElementById(buttonId);
@@ -111,8 +43,6 @@ function createUpgrade({ buttonId, priceElementId, levelElementId, multipleEleme
 
     button.addEventListener("click", function () {
         if (score >= priceAmount) {
-            console.log("Item successfully Bought");
-
             // Subtract cookies from the price of the item
             score -= priceAmount;
 
@@ -139,7 +69,7 @@ function createUpgrade({ buttonId, priceElementId, levelElementId, multipleEleme
         multipleElement.innerHTML = power(levelNumber);
     };
 
-    // Initialize the display
+    // Refresh display
     refreshUpgrade();
 }
 
@@ -159,26 +89,92 @@ createUpgrade({
 });
 
 // Start the auto-clicker interval
-let autoClickerPower = 0;
+let autoClickerPowers = [0,0];
 setInterval(() => {
-    score += autoClickerPower;
+    score += autoClickerPowers.reduce((a, b) => a + b, 0);
     refreshCookieCount();
 }, 1000);
 
 // Upgrade auto-clicker, which automatically clicks the cookie for you
 createUpgrade({
-    buttonId: 'buy-auto-clicker',
-    priceElementId: 'auto-clicker-price',
-    levelElementId: 'auto-clicker-level',
-    multipleElementId: 'auto-clicker-multiple',
+    buttonId: 'buy-auto-clicker-1',
+    priceElementId: 'auto-clicker-price-1',
+    levelElementId: 'auto-clicker-level-1',
+    multipleElementId: 'auto-clicker-multiple-1',
     priceAmount: 100,
     scalingAmount: 2.5,
-    levelNumber: 1,
-    power: (level) => level - 1, // Power is equal to the level minus 1
+    levelNumber: 0,
+    power: (level) => level, // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPower = level - 1; // Update auto-clicker power based on level
+        autoClickerPowers[0] = level; // Update auto-clicker power based on level
     }
 });
+
+// Upgrade auto-clicker, which automatically clicks the cookie for you
+createUpgrade({
+    buttonId: 'buy-auto-clicker-2',
+    priceElementId: 'auto-clicker-price-2',
+    levelElementId: 'auto-clicker-level-2',
+    multipleElementId: 'auto-clicker-multiple-2',
+    priceAmount: 200,
+    scalingAmount: 2.5,
+    levelNumber: 0,
+    power: (level) => (level*2), // Power is equal to the level minus 1
+    onUpgrade: function(level) {
+        autoClickerPowers[1] = (level*2); // Update auto-clicker power based on level
+    }
+});
+
+
+
+// ---==== Golden Cookie ====---
+let goldenCookie = document.getElementById('golden-cookie');
+var letGoldenIn = true; // flag to stop multiple golden cookies spawning at once
+
+// Function to spawn a golden cookie at a random position with a random value
+function spawnGoldenCookie() {
+    const cookieVal = Math.ceil(Math.sqrt(Math.random() * 10000) + 1); // Random number between 1 and 101 (weighted to lower values)
+    const delay = Math.random() * 20000 + 20000; // 20s to 40s
+    if (!letGoldenIn) return; // no spawn if letGoldenIn false
+  
+    letGoldenIn = false; // no further spawning until this one is clicked
+    
+    setTimeout(() => {
+        const x = Math.random() * (window.innerWidth - 100); 
+        const y = Math.random() * (window.innerHeight - 100);
+
+        goldenCookie.style.left = `${x}px`;
+        goldenCookie.style.top = `${y}px`;
+        goldenCookie.style.display = 'block';
+        goldenCookie.style.animation = 'none'; // restart animation
+        goldenCookie.dataset.value = cookieVal;
+        void goldenCookie.offsetWidth; // force reflow
+
+        const duration = (20000-((cookieVal + 30)**2))/2; // random duration based on value
+
+        goldenCookie.style.animation = `popInOut ${duration}ms ease-in-out forwards`;
+
+        // Auto-remove after animation (5s)
+        setTimeout(() => {
+            goldenCookie.style.display = 'none';
+            spawnGoldenCookie(); // Schedule next one
+        }, duration + 1000);
+    }, delay);
+    letGoldenIn = true;
+}
+
+// Click event for the golden cookie
+// Increment score on golden cookie click then hide golden cookie and spawn a new one
+goldenCookie.addEventListener('click', () => {
+    let goldVal = parseInt(goldenCookie.dataset.value);
+    score += goldVal;
+    refreshCookieCount();
+    
+    goldenCookie.style.display = 'none'; // Hide on click
+    spawnGoldenCookie(); // Schedule next one
+});
+
+spawnGoldenCookie(); // Start the loop
 
 // ---==== Message Modal ====---
  // Function to show a modal (popup box) with a custom message
@@ -189,7 +185,9 @@ createUpgrade({
     modal.style.display = 'block';
 }
 
+let closeModal = document.getElementById('close-modal');
 // Close modal functionality
-document.getElementById('close-modal').addEventListener('click', () => {
+closeModal.addEventListener('click', () => {
+    console.log("close modal")
     document.getElementById('message-modal').style.display = 'none';
 });
