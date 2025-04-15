@@ -1,5 +1,3 @@
-
-
 let score = 0;
 let clickPower = 1;
 let clickedLastSecond = 0;
@@ -10,11 +8,13 @@ let scoreDisplay = document.getElementById('score');
 
 // Event listener for cookie click
 // Increment score on click
-cookie.addEventListener('click', () => {
+function cookieClick() {
     score += clickPower;
     clickedLastSecond += clickPower;
     refreshCookieCount();
-});
+}
+    
+cookie.addEventListener('click', cookieClick);
 
 let refreshCookieCount = function() {
     scoreDisplay.textContent = score;
@@ -24,7 +24,7 @@ let refreshCookieCount = function() {
 // Function to update the cookies per second display
 function updateCPS(clickedPerSecond) {
     let cpsDisplay = document.getElementById('cps');
-    cpsDisplay.textContent = autoClickerPowers.reduce((a, b) => a + b, 0) + clickedPerSecond;
+    cpsDisplay.textContent = autoClickerPower1 + autoClickerPower2 + clickedPerSecond;
 }
 
 // Update the cookies per second display every second
@@ -89,9 +89,10 @@ createUpgrade({
 });
 
 // Start the auto-clicker interval
-let autoClickerPowers = [0,0];
+let autoClickerPower1 = 0;
+let autoClickerPower2 = 0;
 setInterval(() => {
-    score += autoClickerPowers.reduce((a, b) => a + b, 0);
+    score += autoClickerPower1 + autoClickerPower2; // Add auto-clicker power to score each second
     refreshCookieCount();
 }, 1000);
 
@@ -106,7 +107,7 @@ createUpgrade({
     levelNumber: 0,
     power: (level) => level, // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPowers[0] = level; // Update auto-clicker power based on level
+        autoClickerPower1 = level; // Update auto-clicker power based on level
     }
 });
 
@@ -121,7 +122,7 @@ createUpgrade({
     levelNumber: 0,
     power: (level) => (level*2), // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPowers[1] = (level*2); // Update auto-clicker power based on level
+        autoClickerPower2 = (level*2); // Update auto-clicker power based on level
     }
 });
 
