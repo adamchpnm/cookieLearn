@@ -11,7 +11,7 @@ function cookieClick() {
     // YOUR CODE HERE
 }
     
-cookie.addEventListener(???, cookieClick);
+cookie.addEventListener(???, cookieClick); // YOUR CODE HERE
 
 let refreshCookieCount = function() {
     scoreDisplay.textContent = score;
@@ -86,8 +86,8 @@ createUpgrade({
 });
 
 // Start the auto-clicker interval
-let autoClickerPower1 = 0;
-let autoClickerPower2 = 0;
+let autoPower1 = 0;
+let autoPower2 = 0;
 
 setInterval(() => {
     // YOUR CODE HERE
@@ -108,6 +108,8 @@ createUpgrade({
     }
 });
 
+// Add another auto-clicker upgrade, using autoPower2
+// YOUR CODE HERE
 
 // ---==== Golden Cookie ====---
 let goldenCookie = document.getElementById('golden-cookie');
