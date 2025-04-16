@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the style for the page -->
+    <link rel="stylesheet" href="../css/pageStyle.css">
+    <!-- Includes the font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+    <title>Cookie Clicker Game</title>
+</head>
+
+<body>
+    <h2>Cookie Clicker Game</h2>
+    <p>Score: <span class="score-var" id="score">0</span></p>
+    <p>Cookies per Second: <span class="score-var" id="cps">0</span></p>
+    <div id="cookie">
+        <div class="chocolate-chip chip1"></div>
+        <div class="chocolate-chip chip2"></div>
+        <div class="chocolate-chip chip3"></div>
+        <div class="chocolate-chip chip4"></div>
+        <div class="chocolate-chip chip5"></div>
+        <div class="chocolate-chip chip6"></div>
+        <div class="chocolate-chip chip7"></div>
+    </div>
+    <br><br>
+    <!-- <button id="reset-button">Reset Score</button> -->
+    <hr>
+    <h2>Shop</h2>
+    <hr>
+    <div class="shop-elem">
+        <p>Click Power</p>
+        <p>Produces <span id="click-power-multiple">1</span> cookie(s) per click</p>
+        <button id="buy-click-power">Buy for <span id="click-power-price">10</span></button>
+        <p>level: <span id="click-power-level">1</span></p>
+    </div>
+    <div class="shop-elem">
+        <p>Auto Clicker 1</p>
+        <p>Produces <span id="auto-clicker-multiple-1">0</span> cookie(s) per second</p>
+        <button id="buy-auto-clicker-1">Buy for <span id="auto-clicker-price-1">100</span></button>
+        <p>level: <span id="auto-clicker-level-1">0</span></p>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="message-modal">
+        <div id="modal-content">
+            <span id="close-modal">&times;</span>
+            <p id="modal-message">Empty message</p>
+        </div>
+    </div>
+
+    <div id="golden-cookie">
+        <div class="golden-chip g-chip1" id = "g-chip1"></div>
+        <div class="golden-chip g-chip2" id = "g-chip2"></div>
+        <div class="golden-chip g-chip3" id = "g-chip3"></div>
+        <div class="golden-chip g-chip4" id = "g-chip4"></div>
+        <div class="golden-chip g-chip5" id = "g-chip5"></div>
+        <div class="golden-chip g-chip6" id = "g-chip6"></div>
+        <div class="golden-chip g-chip7" id = "g-chip7"></div>
+    </div>
+
+    <script src="../js/cookieLogic.js"></script> 
+</body>
+
+</html>

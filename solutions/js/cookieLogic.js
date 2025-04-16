@@ -30,7 +30,7 @@ function updateCPS(clickedPerSecond) {
 // Update the cookies per second display every second
 setInterval(() => {
     updateCPS(clickedLastSecond);
-    clickedLastSecond = 0; // Reset clicked last second
+    clickedLastSecond = 0; // Reset
 }, 1000);
 
 // ---==== Shop ====---
@@ -80,7 +80,7 @@ createUpgrade({
     levelElementId: 'click-power-level',
     multipleElementId: 'click-power-multiple',
     priceAmount: 10,
-    scalingAmount: 2.33,
+    scalingAmount: 1.5,
     levelNumber: 1,
     power: (level) => level, // Power is equal to the level
     onUpgrade: function(level) {
@@ -105,9 +105,9 @@ createUpgrade({
     priceAmount: 100,
     scalingAmount: 2.5,
     levelNumber: 0,
-    power: (level) => level, // Power is equal to the level minus 1
+    power: (level) => (level**2), // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPower1 = level; // Update auto-clicker power based on level
+        autoClickerPower1 = (level**2); // Update auto-clicker power based on level
     }
 });
 
@@ -118,11 +118,11 @@ createUpgrade({
     levelElementId: 'auto-clicker-level-2',
     multipleElementId: 'auto-clicker-multiple-2',
     priceAmount: 200,
-    scalingAmount: 2.5,
+    scalingAmount: 5,
     levelNumber: 0,
-    power: (level) => (level*2), // Power is equal to the level minus 1
+    power: (level) => (level**3), // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPower2 = (level*2); // Update auto-clicker power based on level
+        autoClickerPower2 = (level**3); // Update auto-clicker power based on level
     }
 });
 
@@ -134,10 +134,17 @@ var letGoldenIn = true; // flag to stop multiple golden cookies spawning at once
 
 // Function to spawn a golden cookie at a random position with a random value
 function spawnGoldenCookie() {
-    const cookieVal = Math.ceil(Math.sqrt(Math.random() * 10000) + 1); // Random number between 1 and 101 (weighted to lower values)
-    const delay = Math.random() * 20000 + 20000; // 20s to 40s
+
+    // Random number between 1 and 101 (weighted to lower values)
+    const cookieVal = Math.ceil(Math.sqrt(Math.random() * 10000) + 1); 
+    // 20s to 40s
+    const delay = Math.random() * 20000 + 20000; 
+    // random duration based on value
+    const duration = (20000-((cookieVal + 30)**2))/2; 
+
+
     if (!letGoldenIn) return; // no spawn if letGoldenIn false
-  
+
     letGoldenIn = false; // no further spawning until this one is clicked
     
     setTimeout(() => {
@@ -150,8 +157,6 @@ function spawnGoldenCookie() {
         goldenCookie.style.animation = 'none'; // restart animation
         goldenCookie.dataset.value = cookieVal;
         void goldenCookie.offsetWidth; // force reflow
-
-        const duration = (20000-((cookieVal + 30)**2))/2; // random duration based on value
 
         goldenCookie.style.animation = `popInOut ${duration}ms ease-in-out forwards`;
 
@@ -169,6 +174,7 @@ function spawnGoldenCookie() {
 goldenCookie.addEventListener('click', () => {
     let goldVal = parseInt(goldenCookie.dataset.value);
     score += goldVal;
+    
     refreshCookieCount();
     
     goldenCookie.style.display = 'none'; // Hide on click
@@ -192,3 +198,9 @@ closeModal.addEventListener('click', () => {
     console.log("close modal")
     document.getElementById('message-modal').style.display = 'none';
 });
+
+function showSecretMessage() { 
+    showMessage("Secret message!");
+}
+
+setTimeout(showSecretMessage, 10000);
