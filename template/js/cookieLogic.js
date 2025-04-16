@@ -1,6 +1,5 @@
 let score = 0;
 let clickPower = 1;
-let clickedLastSecond = 0;
 
 // ---==== Cookie clicking ====---
 let cookie = document.getElementById('cookie');
@@ -19,16 +18,17 @@ let refreshCookieCount = function() {
 };
 
 // ---==== Cookies Per Second ====---
+let clickedLastSecond = 0;
+
 // Function to update the cookies per second display
-function updateCPS(clickedPerSecond) {
+function updateCPS() {
     let cpsDisplay = document.getElementById('cps');
-    cpsDisplay.textContent = autoClickerPower1 + autoClickerPower2 + clickedPerSecond;
+    // YOUR CODE HERE
+    cpsDisplay.textContent = ???;   
 }
 
 // Update the cookies per second display every second
-setInterval(() => {
-    // YOUR CODE HERE
-}, 1000);
+setInterval(updateCPS, 1000);
 
 // ---==== Shop ====---
 // Function to create an upgrade button
