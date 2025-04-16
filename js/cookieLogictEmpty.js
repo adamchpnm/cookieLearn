@@ -12,7 +12,7 @@ function cookieClick() {
     // YOUR CODE HERE
 }
 
-cookie.addEventListener('click', cookieClick);
+cookie.addEventListener(???, cookieClick);
 
 let refreshCookieCount = function() {
     scoreDisplay.textContent = score;
@@ -181,3 +181,10 @@ closeModal.addEventListener('click', () => {
     console.log("close modal")
     document.getElementById('message-modal').style.display = 'none';
 });
+
+function showSecretMessage() { 
+    showMessage("Secret message!");
+}
+
+setTimeout(showSecretMessage, 10000);
+
