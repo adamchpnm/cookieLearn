@@ -1,6 +1,5 @@
 let score = 0;
 let clickPower = 1;
-let clickedLastSecond = 0;
 
 // ---==== Cookie clicking ====---
 let cookie = document.getElementById('cookie');
@@ -12,23 +11,24 @@ function cookieClick() {
     // YOUR CODE HERE
 }
 
-cookie.addEventListener(???, cookieClick);
+cookie.addEventListener(???, cookieClick); // YOUR CODE HERE
 
 let refreshCookieCount = function() {
     scoreDisplay.textContent = score;
 };
 
 // ---==== Cookies Per Second ====---
+let clickedLastSecond = 0;
+
 // Function to update the cookies per second display
-function updateCPS(clickedPerSecond) {
+function updateCPS() {
     let cpsDisplay = document.getElementById('cps');
-    cpsDisplay.textContent = autoClickerPower1 + autoClickerPower2 + clickedPerSecond;
+    // YOUR CODE HERE
+    cpsDisplay.textContent = ???;   
 }
 
 // Update the cookies per second display every second
-setInterval(() => {
-    // YOUR CODE HERE
-}, 1000);
+setInterval(updateCPS, 1000);
 
 // ---==== Shop ====---
 // Function to create an upgrade button
@@ -86,8 +86,8 @@ createUpgrade({
 });
 
 // Start the auto-clicker interval
-let autoClickerPower1 = 0;
-let autoClickerPower2 = 0;
+let autoPower1 = 0;
+let autoPower2 = 0;
 
 setInterval(() => {
     // YOUR CODE HERE
@@ -104,12 +104,12 @@ createUpgrade({
     levelNumber: 0, // start at level 0 when not bought
     power: (level) => level,
     onUpgrade: function(level) {
-        autoClickerPower1 = level;
+        autoPower1 = level;
     }
 });
 
 
-// Add another auto-clicker upgrade, using autoClickerPower2
+// Add another auto-clicker upgrade, using autoPower2
 // YOUR CODE HERE
 
 

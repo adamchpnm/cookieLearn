@@ -1,6 +1,5 @@
 let score = 0;
 let clickPower = 1;
-let clickedLastSecond = 0;
 
 // ---==== Cookie clicking ====---
 let cookie = document.getElementById('cookie');
@@ -21,17 +20,17 @@ let refreshCookieCount = function() {
 };
 
 // ---==== Cookies Per Second ====---
+let clickedLastSecond = 0;
+
 // Function to update the cookies per second display
-function updateCPS(clickedPerSecond) {
+function updateCPS() {
     let cpsDisplay = document.getElementById('cps');
-    cpsDisplay.textContent = autoClickerPower1 + autoClickerPower2 + clickedPerSecond;
+    cpsDisplay.textContent = autoPower1 + autoPower2 + clickedLastSecond;
+    clickedLastSecond = 0; // Reset clicked last second
 }
 
 // Update the cookies per second display every second
-setInterval(() => {
-    updateCPS(clickedLastSecond);
-    clickedLastSecond = 0; // Reset
-}, 1000);
+setInterval(updateCPS, 1000);
 
 // ---==== Shop ====---
 // Function to create an upgrade button
@@ -89,10 +88,10 @@ createUpgrade({
 });
 
 // Start the auto-clicker interval
-let autoClickerPower1 = 0;
-let autoClickerPower2 = 0;
+let autoPower1 = 0;
+let autoPower2 = 0;
 setInterval(() => {
-    score += autoClickerPower1 + autoClickerPower2; // Add auto-clicker power to score each second
+    score += autoPower1 + autoPower2; // Add auto-clicker power to score each second
     refreshCookieCount();
 }, 1000);
 
@@ -107,7 +106,7 @@ createUpgrade({
     levelNumber: 0,
     power: (level) => (level**2), // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPower1 = (level**2); // Update auto-clicker power based on level
+        autoPower1 = level; // Update auto-clicker power based on level
     }
 });
 
@@ -122,7 +121,7 @@ createUpgrade({
     levelNumber: 0,
     power: (level) => (level**3), // Power is equal to the level minus 1
     onUpgrade: function(level) {
-        autoClickerPower2 = (level**3); // Update auto-clicker power based on level
+        autoPower2 = (level*2); // Update auto-clicker power based on level
     }
 });
 
