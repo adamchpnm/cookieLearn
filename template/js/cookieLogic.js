@@ -11,7 +11,7 @@ function cookieClick() {
     // YOUR CODE HERE
 }
     
-cookie.addEventListener(???, cookieClick); // YOUR CODE HERE
+cookie.addEventListener(???, cookieClick);
 
 let refreshCookieCount = function() {
     scoreDisplay.textContent = score;
@@ -24,7 +24,7 @@ let clickedLastSecond = 0;
 function updateCPS() {
     let cpsDisplay = document.getElementById('cps');
     // YOUR CODE HERE
-    cpsDisplay.textContent = ???;   
+    // cpsDisplay.textContent = ???;   
 }
 
 // Update the cookies per second display every second
@@ -86,8 +86,8 @@ createUpgrade({
 });
 
 // Start the auto-clicker interval
-let autoPower1 = 0;
-let autoPower2 = 0;
+let autoClickerPower1 = 0;
+let autoClickerPower2 = 0;
 
 setInterval(() => {
     // YOUR CODE HERE
@@ -108,8 +108,6 @@ createUpgrade({
     }
 });
 
-// Add another auto-clicker upgrade, using autoPower2
-// YOUR CODE HERE
 
 // ---==== Golden Cookie ====---
 let goldenCookie = document.getElementById('golden-cookie');
