@@ -177,11 +177,6 @@ button:hover {
 
 /* Chip positions */
 .g-chip1 {
-    top: 10px;
-    left: 20px;
-}
-
-.g-chip1 {
     top: 12px;
     left: 24px;
 }
