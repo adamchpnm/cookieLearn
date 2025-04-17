@@ -90,10 +90,13 @@ createUpgrade({
 // Start the auto-clicker interval
 let autoPower1 = 0;
 let autoPower2 = 0;
-setInterval(() => {
+
+function autoClicker() { 
     score += autoPower1 + autoPower2; // Add auto-clicker power to score each second
     refreshCookieCount();
-}, 1000);
+}
+
+setInterval(autoClicker, 1000);
 
 // Upgrade auto-clicker, which automatically clicks the cookie for you
 createUpgrade({
@@ -170,7 +173,7 @@ function spawnGoldenCookie() {
 
 // Click event for the golden cookie
 // Increment score on golden cookie click then hide golden cookie and spawn a new one
-goldenCookie.addEventListener('click', () => {
+function goldenClick() { 
     let goldVal = parseInt(goldenCookie.dataset.value);
     score += goldVal;
     
@@ -178,25 +181,29 @@ goldenCookie.addEventListener('click', () => {
     
     goldenCookie.style.display = 'none'; // Hide on click
     spawnGoldenCookie(); // Schedule next one
-});
+}
+
+goldenCookie.addEventListener('click', goldenClick);
 
 spawnGoldenCookie(); // Start the loop
 
 // ---==== Message Modal ====---
- // Function to show a modal (popup box) with a custom message
- function showMessage(message) {
+// Function to show a modal (popup box) with a custom message
+function showMessage(message) {
     const modal = document.getElementById('message-modal');
     const modalMessage = document.getElementById('modal-message');
     modalMessage.textContent = message;
      modal.style.display = 'block';
 }
 
+
 let closeModal = document.getElementById('close-modal');
-// Close modal functionality
-closeModal.addEventListener('click', () => {
-    console.log("close modal")
+function CloseModal() {
     document.getElementById('message-modal').style.display = 'none';
-});
+}
+
+// Close modal functionality
+closeModal.addEventListener('click', closeModal);
 
 function showSecretMessage() { 
     showMessage("Secret message!");

@@ -148,7 +148,7 @@ function spawnGoldenCookie() {
 
 // Click event for the golden cookie
 // Increment score on golden cookie click then hide golden cookie and spawn a new one
-goldenCookie.addEventListener('click', () => {
+function goldenClick() { 
     let goldVal = parseInt(goldenCookie.dataset.value); // Get the value of the golden cookie
     score += goldVal; // Increment score by the value of the golden cookie
     
@@ -157,14 +157,16 @@ goldenCookie.addEventListener('click', () => {
 
     goldenCookie.style.display = 'none'; // Hide on click
     spawnGoldenCookie(); // Schedule next one
-});
+}
+
+goldenCookie.addEventListener('click', goldenClick);
 
 // How do you start the cycle of golden cookies appearing?
 // YOUR CODE HERE
 
 // ---==== Message Modal ====---
- // Function to show a modal (popup box) with a custom message
- function showMessage(message) {
+// Function to show a modal (popup box) with a custom message
+function showMessage(message) {
     const modal = document.getElementById('message-modal');
     const modalMessage = document.getElementById('modal-message');
     modalMessage.textContent = message;
@@ -172,11 +174,12 @@ goldenCookie.addEventListener('click', () => {
 }
 
 let closeModal = document.getElementById('close-modal');
-// Close modal functionality
-closeModal.addEventListener('click', () => {
-    console.log("close modal")
+function CloseModal() {
     document.getElementById('message-modal').style.display = 'none';
-});
+}
+
+// Close modal functionality
+closeModal.addEventListener('click', closeModal);
 
 function showSecretMessage() { 
     showMessage("Secret message!");
