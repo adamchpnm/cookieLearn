@@ -137,11 +137,8 @@ function spawnGoldenCookie() {
 
         goldenCookie.style.animation = `popInOut ${duration}ms ease-in-out forwards`;
 
-        // Auto-remove after animation (5s)
-        setTimeout(() => {
-            goldenCookie.style.display = 'none';
-            spawnGoldenCookie(); // Schedule next one
-        }, duration + 1000);
+        // Auto-remove 5 seconds after animation completes
+        setTimeout(despawnGoldenCookie, duration + 5000);
     }, delay);
     letGoldenIn = true;
 }
@@ -156,6 +153,11 @@ function goldenClick() {
     // YOUR CODE HERE
 
     goldenCookie.style.display = 'none'; // Hide on click
+    spawnGoldenCookie(); // Schedule next one
+}
+
+function despawnGoldenCookie() {
+    goldenCookie.style.display = 'none';
     spawnGoldenCookie(); // Schedule next one
 }
 
