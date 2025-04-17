@@ -188,7 +188,7 @@ spawnGoldenCookie(); // Start the loop
     const modal = document.getElementById('message-modal');
     const modalMessage = document.getElementById('modal-message');
     modalMessage.textContent = message;
-    modal.style.display = 'block';
+     modal.style.display = 'block';
 }
 
 let closeModal = document.getElementById('close-modal');
@@ -202,4 +202,5 @@ function showSecretMessage() {
     showMessage("Secret message!");
 }
 
-setTimeout(showSecretMessage, 10000);
+setTimeout(showSecretMessage, 60000); // Show a secret message after a minute
+

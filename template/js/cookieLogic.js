@@ -11,7 +11,7 @@ function cookieClick() {
     // YOUR CODE HERE
 }
     
-cookie.addEventListener(???, cookieClick);
+cookie.addEventListener(???, cookieClick); // TODO
 
 let refreshCookieCount = function() {
     scoreDisplay.textContent = score;
@@ -76,10 +76,12 @@ createUpgrade({
     priceElementId: 'click-power-price',
     levelElementId: 'click-power-level',
     multipleElementId: 'click-power-multiple',
-    priceAmount: 1,
-    scalingAmount: 1,
-    levelNumber: 1,
-    power: (level) => 1,
+    priceAmount: 1, // TODO
+    scalingAmount: 1, // TODO
+    levelNumber: 1, // TODO
+    power: function(level) {
+        1 // TODO
+    },
     onUpgrade: function(level) {
         clickPower = 1; 
     }
@@ -94,19 +96,19 @@ setInterval(() => {
 }, 1000);
 
 // Upgrade auto-clicker, which automatically clicks the cookie for you
-createUpgrade({
-    buttonId: 'buy-auto-clicker-1',
-    priceElementId: 'auto-clicker-price-1',
-    levelElementId: 'auto-blicker-level-1',
-    multipleElementId: 'auto-clicker-multiple-1',
-    priceAmount: 100,
-    scalingAmount: 2.5,
-    levelNumber: 0, // start at level 0 when not bought
-    power: (level) => (level**2), 
-    onUpgrade: function(level) {
-        autoClickerPower1 = (level**2);
-    }
-});
+// createUpgrade({
+//     buttonId: 'buy-auto-clicker-1',
+//     priceElementId: 'auto-clicker-price-1',
+//     levelElementId: 'auto-blicker-level-1',
+//     multipleElementId: 'auto-clicker-multiple-1',
+//     priceAmount: 100,
+//     scalingAmount: 2.5,
+//     levelNumber: 0, // start at level 0 when not bought
+//     power: (level) => (level**2), 
+//     onUpgrade: function(level) {
+//         autoClickerPower1 = (level**2);
+//     }
+// });
 
 
 // ---==== Golden Cookie ====---
@@ -180,4 +182,4 @@ function showSecretMessage() {
     showMessage("Secret message!");
 }
 
-setTimeout(showSecretMessage, 10000);
+setTimeout(showSecretMessage, 60000); // Show a secret message after a minute
